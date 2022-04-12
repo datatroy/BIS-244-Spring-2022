@@ -1,7 +1,8 @@
 # Solution file for BIS 244 Assignment 03, Spring 2022
 rm(list=ls(all=TRUE))
-cat("\014")
 dev.off(dev.list()["RStudioGD"]) # Apply dev.off() & dev.list()
+cat("\014")
+
 
 library(here)
 library(tidyverse)
@@ -18,7 +19,8 @@ states$Trump <- 0
 n_states <- length(states$state)
 
 COUNTER <- 0
-
+# Let's start a timer....
+ptm <- proc.time()
 for (i in 1:n_votes) {
   for (j in 1:n_states) {
     if (votes$state[i] == states$state[j]) {
@@ -36,6 +38,11 @@ for (i in 1:n_votes) {
     COUNTER <- round(i/n_votes*100, digits = 0)
     cat(COUNTER,"pct complete\n")}
 }
+
+# Stop the timer
+TIMER <- (proc.time() - ptm)
+TIMER
+
 
 # A much quicker way
 
